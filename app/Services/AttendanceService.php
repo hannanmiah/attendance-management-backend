@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Cache;
 
 class AttendanceService
 {
+    public function paginate($perPage = 10)
+    {
+        return Attendance::with('student')->latest()->paginate($perPage);
+    }
+
     public function record(array $attendanceData): void
     {
         foreach ($attendanceData as $data) {

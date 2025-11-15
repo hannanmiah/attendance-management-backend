@@ -14,6 +14,27 @@ beforeEach(function () {
     Sanctum::actingAs($this->user);
 });
 
+test('paginate latest attendances',function (){
+    Attendance::factory()->count(3)->create();
+    $response = $this->getJson('/api/attendances');
+    $response->assertStatus(200)
+        ->assertJsonCount(3, 'data');
+    // assert json structure
+    $response->assertJsonStructure([
+        'data' => [
+            '*' => [
+                'id',
+                'student_id',
+                'date',
+                'status',
+                'note',
+                'recorded_by',
+                'student',
+            ],
+        ],
+    ]);
+});
+
 test('can record attendance in bulk', function () {
     $students = Student::factory()->count(3)->create();
 

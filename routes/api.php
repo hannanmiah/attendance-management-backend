@@ -17,6 +17,7 @@ Route::prefix('auth')->name('auth.')->controller(AuthenticationController::class
 });
 
 Route::apiResource('students', StudentController::class)->middleware('auth:sanctum');
+Route::get('attendances',[AttendanceController::class,'index'])->middleware('auth:sanctum');
 Route::post('attendance', [AttendanceController::class, 'store'])->middleware('auth:sanctum');
 Route::get('attendance/report', [AttendanceController::class, 'monthlyReport'])->middleware('auth:sanctum');
 Route::get('attendance/statistics', [AttendanceController::class, 'statistics'])->middleware('auth:sanctum');

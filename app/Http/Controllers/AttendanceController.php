@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAttendanceRequest;
+use App\Http\Resources\AttendanceResource;
 use App\Services\AttendanceService;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
-    public function __construct(protected AttendanceService $attendanceService) {}
+    public function __construct(protected AttendanceService $attendanceService)
+    {
+    }
+
+    public function index()
+    {
+        return AttendanceResource::collection($this->attendanceService->paginate(\request()->query('per_page', 10)));
+    }
 
     /**
      * Store a newly created resource in storage.

@@ -23,6 +23,10 @@ class Attendance extends Model
         'recorded_by',
     ];
 
+    protected $casts = [
+        'date' => 'datetime:Y-m-d',
+    ];
+
     public function student()
     {
         return $this->belongsTo(Student::class);

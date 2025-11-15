@@ -22,4 +22,9 @@ class Student extends Model
         'section',
         'photo',
     ];
+
+    public function attendance()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

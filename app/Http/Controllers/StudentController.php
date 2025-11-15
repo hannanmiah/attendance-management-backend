@@ -5,15 +5,26 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StudentRequest;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return StudentResource::collection(Student::all());
+        $query = Student::query();
+        if ($request->filled('search')) {
+            $query->whereAny(['name', 'class', 'section'], 'like', '%' . $request->search . '%');
+        }
+        if ($request->filled('class')) {
+            $query->where('class', $request->class);
+        }
+        if ($request->filled('student_id')) {
+            $query->where('student_id', $request->section);
+        }
+        return StudentResource::collection($query->latest()->paginate(request('per_page', 10)));
     }
 
     /**

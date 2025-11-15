@@ -18,6 +18,27 @@ test('can get all students', function () {
         ->assertJsonCount(3, 'data');
 });
 
+test('search student',function (){
+    Student::factory()->create(['name' => 'John']);
+    $response = $this->getJson('/api/students?search=John');
+    $response->assertStatus(200)
+        ->assertJsonCount(1, 'data');
+});
+
+test('filter student by class',function (){
+    Student::factory()->create(['class' => '10']);
+    $response = $this->getJson('/api/students?class=10');
+    $response->assertStatus(200)
+        ->assertJsonCount(1, 'data');
+});
+
+test('invalid search return empty result',function (){
+    Student::factory()->count(3)->create();
+    $response = $this->getJson('/api/students?search=kdslfs8dfdsf');
+    $response->assertStatus(200)
+        ->assertJsonCount(0, 'data');
+});
+
 test('can create a student', function () {
     $studentData = [
         'name' => 'John Doe',

@@ -4,11 +4,9 @@ use App\Events\AttendanceRecorded;
 use App\Models\Attendance;
 use App\Models\Student;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
 use Laravel\Sanctum\Sanctum;
-
-uses(RefreshDatabase::class);
 
 beforeEach(function () {
     $this->user = User::factory()->create();
@@ -82,7 +80,7 @@ test('dispatches an event when attendance is recorded', function () {
 });
 
 test('can get attendance statistics', function () {
-    \Illuminate\Support\Facades\Cache::flush();
+    Cache::flush();
 
     Attendance::factory()->create(['status' => 'present', 'student_id' => $this->student->id, 'recorded_by' => $this->user->id]);
     Attendance::factory()->create(['status' => 'absent', 'student_id' => $this->student->id, 'recorded_by' => $this->user->id]);
@@ -97,7 +95,7 @@ test('can get attendance statistics', function () {
             'late' => 1,
         ]);
 
-    $this->assertTrue(\Illuminate\Support\Facades\Cache::has('attendance_statistics'));
+    $this->assertTrue(Cache::has('attendance_statistics'));
 
     $response = $this->getJson('/api/attendance/statistics');
     $response->assertStatus(200);

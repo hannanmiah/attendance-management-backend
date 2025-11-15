@@ -1,59 +1,34 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Based on the technical assessment email, here are the step-by-step requirements for the backend codebase (Laravel):
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Laravel Backend Requirements (60%)
 
-## About Laravel
+#### **1. Student Management**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* **Model:** Create a `Student` model with the following attributes: `name`, `student_id`, `class`, `section`, and `photo`.
+* **CRUD:** Implement Create, Read, Update, and Delete (CRUD) endpoints.
+* **Validation:** Ensure all CRUD endpoints have proper data validation.
+* **API Responses:** Use Laravel Resource for all API responses.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### **2. Attendance Module**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Model:** Create an `Attendance` model with the following attributes: `student_id`, `date`, `status`, `note`, and `recorded_by`.
+* **Bulk Recording:** Implement a single endpoint for recording attendance in bulk.
+* **Query Optimization:** Optimize database queries for attendance reports.
+* **Monthly Report:** Generate a monthly attendance report, ensuring the use of eager loading to optimize data fetching.
 
-## Learning Laravel
+#### **3. Advanced Features**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* **Service Layer:** Implement a Service Layer to encapsulate and manage attendance business logic.
+* **Artisan Command:** Create a custom Artisan command with the signature `attendance:generate-report {month} {class}`.
+* **Events/Listeners:** Utilize Laravel Events and Listeners for attendance notifications.
+* **Redis Caching:** Implement Redis caching for attendance statistics.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### **General Technical Requirements**
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* **Framework Version:** Use Laravel 10+ (and Vue 3 for frontend).
+* **Database:** Use MySQL or PostgreSQL with proper database migrations.
+* **Authentication:** Implement simple token-based authentication using Laravel Sanctum.
+* **Architecture:** Adhere to SOLID principles.
+* **Testing:** Write a minimum of three unit tests for critical features.
+* **Containerization:** Docker setup is optional but recommended.
+* **Git:** Maintain a clean Git history with meaningful commits.

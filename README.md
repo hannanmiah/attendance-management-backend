@@ -20,7 +20,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 - PHP >= 8.2
 - Composer
-- Node.js & npm
 - A database server (SQLite, MySQL, PostgreSQL, etc.)
 
 ### Installation

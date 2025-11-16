@@ -28,7 +28,7 @@ These instructions will get you a copy of the project up and running on your loc
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/hannanmiah/attendance-management-backend.git
-   cd attendance-management
+   cd attendance-management-backend
    ```
 
 2. **Install dependencies:**

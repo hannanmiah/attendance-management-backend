@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,8 @@ Route::get('attendances',[AttendanceController::class,'index'])->middleware('aut
 Route::post('attendance', [AttendanceController::class, 'store'])->middleware('auth:sanctum');
 Route::get('attendance/report', [AttendanceController::class, 'monthlyReport'])->middleware('auth:sanctum');
 Route::get('attendance/statistics', [AttendanceController::class, 'statistics'])->middleware('auth:sanctum');
+
+Route::prefix('stats')->name('stats.')->middleware('auth:sanctum')->controller(StatisticsController::class)->group(function () {
+    Route::get('attendance-this-month', 'attendanceThisMonth')->name('attendanceThisMonth');
+    Route::get('attendance-this-year', 'attendanceThisYear')->name('attendanceThisYear');
+});

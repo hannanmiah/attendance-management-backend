@@ -43,8 +43,9 @@ class AttendanceService
 
     public function getAttendanceStatistics()
     {
-        return Cache::remember('attendance_statistics', now()->addDay(), function () {
+        return Cache::flexible('attendance_statistics', [10, 60], function () {
             return [
+                'total' => Attendance::count(),
                 'present' => Attendance::where('status', 'present')->count(),
                 'absent' => Attendance::where('status', 'absent')->count(),
                 'late' => Attendance::where('status', 'late')->count(),

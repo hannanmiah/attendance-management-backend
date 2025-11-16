@@ -22,6 +22,8 @@ class AttendanceResource extends JsonResource
             'note' => $this->note,
             'recorded_by' => $this->recorded_by,
             'student' => new StudentResource($this->whenLoaded('student')),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

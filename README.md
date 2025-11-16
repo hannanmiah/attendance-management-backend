@@ -34,7 +34,6 @@ These instructions will get you a copy of the project up and running on your loc
 2. **Install dependencies:**
    ```bash
    composer install
-   npm install
    ```
 
 3. **Set up your environment:**
@@ -57,9 +56,9 @@ These instructions will get you a copy of the project up and running on your loc
    php artisan migrate
    ```
 
-5. **Build frontend assets:**
+5. **For Seeding:**
    ```bash
-   npm run build
+   php artisan db:seed
    ```
 
 6. **Start the development server:**

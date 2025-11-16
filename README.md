@@ -77,7 +77,6 @@ All endpoints are prefixed with `/api`.
     - `name` (string, required)
     - `email` (string, required, unique)
     - `password` (string, required, min:8, confirmed)
-    - `phone` (string, nullable, phone:UK, unique)
   - **Response:** `201 Created` with a Sanctum token.
 
 - **`POST /auth/login`**: Log in a user.

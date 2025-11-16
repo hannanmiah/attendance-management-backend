@@ -34,7 +34,6 @@ class AuthenticationController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
-            'phone' => ['nullable', 'string', 'phone:UK', 'unique:' . User::class],
             'password' => 'required|min:8|confirmed',
         ]);
 
